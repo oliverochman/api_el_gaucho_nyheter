@@ -18,6 +18,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
   gem "web-console", ">= 3.3.0"
   gem "listen", "~> 3.2"
   gem "spring"
