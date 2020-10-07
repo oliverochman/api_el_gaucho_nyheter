@@ -9,18 +9,18 @@ gem "puma", "~> 4.1"
 gem "webpacker", "~> 4.0"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
-gem 'rack-cors', require: 'rack/cors'
+gem "rack-cors", require: "rack/cors"
 gem "bootsnap", ">= 1.4.2", require: false
 
 group :development, :test do
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+  gem "factory_bot_rails"
   gem "pry-rails"
   gem "pry-byebug"
 end
 
 group :development do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'factory_bot_rails'
   gem "web-console", ">= 3.3.0"
   gem "listen", "~> 3.2"
   gem "spring"
