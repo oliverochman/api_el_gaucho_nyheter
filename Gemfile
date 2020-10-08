@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| "https://github.com/CraftAcademy/api_el_gaucho_nyheter.git" }
 
 ruby "2.5.1"
 
