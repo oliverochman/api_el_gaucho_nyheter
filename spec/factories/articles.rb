@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :article do
     title { "MyString" }
-    lead { "MyString" }
+    lead { "MyText" }
   end
 end
