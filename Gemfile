@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| "https://github.com/CraftAcademy/api_el_gaucho_nyheter.git" }
 
 ruby "2.5.1"
 
@@ -11,6 +11,7 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "rack-cors", require: "rack/cors"
 gem "bootsnap", ">= 1.4.2", require: false
+gem 'active_model_serializers'
 
 group :development, :test do
   gem "rspec-rails"
