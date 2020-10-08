@@ -5,20 +5,17 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     before do
       get "/api/v1/articles"
     end
-    visit_root_path
 
-    context 'article displays' do
-      it 'title' do
-        expect(page).to have_content 'A very nice title'
-      end
+    it "is expected to return title" do
+      expect(response_json["articles"][0]).to be_truthy
+    end
 
-      it 'lead' do
-        expect(page).to have_content 'This title is the most amazing title that excist'
-      end
+    it "is expected to return lead" do
+      expect(response_json["articles"][0]).to have_content "a wonderful lead"
+    end
 
-      it 'content' do
-        expect(page).to have_content 'Ella Bohlin inte hållit den sociala distans som Folkhälsomyndigheten rekommenderar.'
-      end
+    it "is expected to return content" do
+      expect(response_json["articles"][0]).to eq "this is the amazing content"
     end
   end
 end

@@ -3,4 +3,9 @@ class Api::V1::ArticlesController < ApplicationController
     articles = Article.all
     render json: articles, each_serializer: ArticlesIndexSerializer
   end
+
+  def show
+    articles = Article.find(params[:id])
+    binding.pry
+  end
 end
