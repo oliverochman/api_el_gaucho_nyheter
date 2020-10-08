@@ -11,6 +11,7 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "rack-cors", require: "rack/cors"
 gem "bootsnap", ">= 1.4.2", require: false
+gem 'active_model_serializers'
 
 group :development, :test do
   gem "rspec-rails"

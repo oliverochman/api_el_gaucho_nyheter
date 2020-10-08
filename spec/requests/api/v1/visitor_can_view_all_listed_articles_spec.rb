@@ -21,5 +21,8 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     it "should return article with lead" do
       expect(response_json["articles"][0]).to have_key("lead")
     end
+    it "should return article with content" do
+      expect(response_json["articles"][0]).to have_key("content")
+    end
   end
 end
