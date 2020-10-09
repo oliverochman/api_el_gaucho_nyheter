@@ -10,7 +10,7 @@ class Api::V1::ArticlesController < ApplicationController
       render json: article, serializer: ShowArticleSerializer
       
     rescue => error
-      render json: { error: 'Article does not exist' }, :status => 404
+      render json: { error: 'Article does not exist' }, status: :not_found
     end
   end
 end
