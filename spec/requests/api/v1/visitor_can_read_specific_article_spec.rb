@@ -22,4 +22,18 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       expect(response_json['article']["content"]).to eq 'It made the decision after Mr Trump was treated for Covid-19.'
     end
   end
+
+  describe "GET /api/v1/articles" do
+    before do
+      get "/api/v1/articles/223324234"
+    end
+
+    it 'expected to show error message' do
+      expect(response_json['error']).to eq 'Article does not exist'
+    end
+
+    it 'expected to show 404' do
+      expect(response).to have_http_status(404)
+    end
+  end
 end
