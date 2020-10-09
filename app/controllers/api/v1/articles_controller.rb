@@ -1,18 +1,13 @@
 class Api::V1::ArticlesController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_active_record_error
-
-  def index 
-      if params[:category]
-        articles = Article.where(category: params['category'])
-        
-      else 
-        articles = Article.all
-      end
-    if articles != []
-      render json: articles, each_serializer: ArticlesIndexSerializer
+  def index
+    if params[:category]
+      articles = Article.where(category: params[:category])
     else
-      render json: { error: 'Article does not exist' }, status: :not_found
+      articles = Article.all
     end
+    render json: articles, each_serializer: ArticlesIndexSerializer
+  rescue
+    render json: { error: "Sorry, we don't have that category" }, status: :not_found
   end
 
   def show
@@ -20,13 +15,7 @@ class Api::V1::ArticlesController < ApplicationController
       article = Article.find(params[:id])
       render json: article, serializer: ShowArticleSerializer
     rescue => error
-      render json: { error: 'Article does not exist' }, status: :not_found
+      render json: { error: "Article does not exist" }, status: :not_found
     end
-  end
-
-  private
-
-  def render_active_record_error
-    render json: { error_message: 'Sorry we can not find that article' }, status: 404
   end
 end

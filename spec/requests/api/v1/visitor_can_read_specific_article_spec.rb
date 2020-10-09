@@ -6,7 +6,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
            content: "It made the decision after Mr Trump was treated for Covid-19.")
   }
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles/article.id Successfully" do
     before do
       get "/api/v1/articles/#{article.id}"
     end
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
   end
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles/article.id - Unsuccessfully" do
     before do
       get "/api/v1/articles/invalid_id"
     end

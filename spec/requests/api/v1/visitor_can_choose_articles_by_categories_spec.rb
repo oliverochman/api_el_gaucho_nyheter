@@ -3,10 +3,10 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
   let!(:article2) { create(:article, category: "news") }
   let!(:article3) { create(:article, category: "sports") }
 
-  describe "GET /api/v1/articles/article.id" do
+  describe "GET /api/v1/articles - Successfully" do
     before do
       get "/api/v1/articles",
-      params:{category: "news"}
+          params: { category: "news" }
     end
 
     it "should return 200 response" do
@@ -22,10 +22,10 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
   end
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles - Successfully" do
     before do
       get "/api/v1/articles",
-      params:{category: "sports"}
+          params: { category: "sports" }
     end
 
     it "should be 2 articles in new" do
@@ -37,14 +37,14 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
   end
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles - Unsuccessfully" do
     before do
       get "/api/v1/articles",
-      params:{category: "politics"}
+          params: { category: "food" }
     end
 
     it "expected to show error message" do
-      expect(response_json["error"]).to eq "Article does not exist"
+      expect(response_json["error"]).to eq "Sorry, we don't have that category"
     end
 
     it "should return status 404" do
