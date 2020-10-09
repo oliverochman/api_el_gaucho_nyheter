@@ -3,9 +3,10 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
   let!(:article2) { create(:article, category: "news") }
   let!(:article3) { create(:article, category: "sports") }
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles/article.id" do
     before do
-      get "/api/v1/articles/#{article.news}"
+      get "/api/v1/articles",
+      params:{category: "news"}
     end
 
     it "should return 200 response" do
@@ -23,7 +24,8 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
 
   describe "GET /api/v1/articles" do
     before do
-      get "/api/v1/articles/#{article.sports}"
+      get "/api/v1/articles",
+      params:{category: "sports"}
     end
 
     it "should be 2 articles in new" do

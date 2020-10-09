@@ -8,9 +8,12 @@ class Api::V1::ArticlesController < ApplicationController
     begin
       article = Article.find(params[:id])
       render json: article, serializer: ShowArticleSerializer
-      
     rescue => error
-      render json: { error: 'Article does not exist' }, :status => 404
+      render json: { error: "Article does not exist" }, :status => 404
     end
   end
+
+  def category
+  end
+  
 end
