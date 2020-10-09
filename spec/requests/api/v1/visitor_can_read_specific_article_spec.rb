@@ -10,6 +10,10 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       get "/api/v1/articles/#{article.id}"
     end
 
+    it "should return 200 response" do
+      expect(response).to have_http_status 200
+    end
+
     it "is expected to return title" do
       expect(response_json['article']['title']).to eq 'Presidential debate: Trump refuses to take part in virtual TV event'
     end
@@ -25,15 +29,15 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
 
   describe "GET /api/v1/articles" do
     before do
-      get "/api/v1/articles/223324234"
+      get "/api/v1/articles/invalid_id"
     end
 
     it 'expected to show error message' do
       expect(response_json['error']).to eq 'Article does not exist'
     end
 
-    it 'expected to show 404' do
-      expect(response).to have_http_status(404)
+    it 'should return status 404' do
+      expect(response).to have_http_status 404
     end
   end
 end
