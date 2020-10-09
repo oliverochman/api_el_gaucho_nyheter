@@ -36,4 +36,19 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       expect(response_json["articles"][0]["category"]).to eq "sports"
     end
   end
+
+  describe "GET /api/v1/articles" do
+    before do
+      get "/api/v1/articles",
+      params:{category: "politics"}
+    end
+
+    it "expected to show error message" do
+      expect(response_json["error"]).to eq "Article does not exist"
+    end
+
+    it "should return status 404" do
+      expect(response).to have_http_status 404
+    end
+  end
 end
