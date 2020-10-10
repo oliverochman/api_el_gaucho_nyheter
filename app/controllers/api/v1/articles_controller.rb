@@ -18,4 +18,7 @@ class Api::V1::ArticlesController < ApplicationController
       render json: { error: "Article does not exist" }, status: :not_found
     end
   end
+  before_action :authenticate_user!
+  def create
+  end
 end
