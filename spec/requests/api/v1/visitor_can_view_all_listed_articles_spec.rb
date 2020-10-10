@@ -1,7 +1,7 @@
 RSpec.describe Api::V1::ArticlesController, type: :request do
   let!(:articles) { 2.times { create(:article) } }
 
-  describe "GET /api/v1/articles" do
+  describe "GET /api/v1/articles - Successfully" do
     before do
       get "/api/v1/articles"
     end
