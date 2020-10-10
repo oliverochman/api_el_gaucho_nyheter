@@ -1,5 +1,5 @@
 RSpec.describe "POST /v1/articles", type: :request do
-  let(:journalist) { create(:user, role: "journalist") }
+  let(:journalist) { create(:user, journalist: true) }
   let(:journalist_credentials) { journalist.create_new_auth_token }
   let(:journalist_headers) { { HTTP_ACCEPT: "application/json" }.merge!(journalist_credentials) }
 
