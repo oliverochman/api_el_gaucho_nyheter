@@ -1,4 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: :create
+
   def index
     if params[:category]
       articles = Article.where(category: params[:category])
@@ -20,6 +22,17 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    binding.pry
+    article = Article.create(article_params)
+    if article.persisted?
+      render json: { message: 'Article successfully created!' }, status: :created
+    else 
+      binding.pry
+    end
+  end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :content, :lead, :category)
   end
 end

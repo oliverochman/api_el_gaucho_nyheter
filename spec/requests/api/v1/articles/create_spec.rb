@@ -9,7 +9,9 @@ RSpec.describe "POST /api/v1/articles", type: :request do
       params: {
         article: {
           title: 'Article title',
-          content: 'Article content'  
+          content: 'Article content',
+          category: 'news',
+          lead: 'Article lead'  
         }
       },
       headers: headers 
@@ -20,7 +22,7 @@ RSpec.describe "POST /api/v1/articles", type: :request do
     end
 
     it 'is expected to return success message' do
-      expect(response_json['message']).to eq 'Artcile successfully created!'
+      expect(response_json['message']).to eq 'Article successfully created!'
     end
   end
 end
