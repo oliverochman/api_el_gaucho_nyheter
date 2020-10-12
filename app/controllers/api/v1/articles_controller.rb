@@ -20,7 +20,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   before_action :authenticate_user!
-  before_action :user_journalist?
+  # before_action :user_journalist?
 
   def create
     article = current_user.articles.create(article_params)
