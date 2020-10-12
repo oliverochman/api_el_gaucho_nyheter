@@ -20,8 +20,7 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     end
 
     it "is expected to return success message" do
-      binding.pry
-      expect(response_json("message")).to eq "Article successfully created"
+      expect(response_json["message"]).to eq "Article successfully created"
     end
 
     it "is expected to create article" do
