@@ -1,5 +1,5 @@
 RSpec.describe "POST /v1/admin/articles", type: :request do
-  let(:journalist) { create(:user, role: 'journalist') }  
+  let(:journalist) { create(:user, role: "journalist") }
   let(:journalist_credentials) { journalist.create_new_auth_token }
   let(:journalist_headers) { { HTTP_ACCEPT: "application/json" }.merge!(journalist_credentials) }
 
@@ -30,6 +30,26 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
 
     it "article is expected to be associated with journalist" do
       expect(journalist.articles.first.lead).to eq "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised"
+    end
+  end
+
+  describe "unsuccessfully, missing content" do
+    before do
+      post "/api/v1/admin/articles",
+           params: {
+             title: "Trump holds first public event since Covid diagnosis",
+             lead: "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised",
+             content: "",
+             category: "news",
+           }, headers: journalist_headers
+    end
+
+    it "is expected to return 422 response status" do
+      expect(response).to have_http_status 422
+    end
+
+    it "is expected to return error message" do
+      expect(response_json["message"]).to eq "Content can't be blank"
     end
   end
 end
