@@ -1,11 +1,11 @@
-RSpec.describe "POST /v1/articles", type: :request do
+RSpec.describe "POST /v1/admin/articles", type: :request do
   let(:journalist) { create(:user, role: 'journalist') }  
   let(:journalist_credentials) { journalist.create_new_auth_token }
   let(:journalist_headers) { { HTTP_ACCEPT: "application/json" }.merge!(journalist_credentials) }
 
   describe "successfully with vaild params and headers" do
     before do
-      post "/api/v1/articles",
+      post "/api/v1/admin/articles",
            params: {
              title: "Trump holds first public event since Covid diagnosis",
              lead: "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised",
@@ -20,6 +20,7 @@ RSpec.describe "POST /v1/articles", type: :request do
     end
 
     it "is expected to return success message" do
+      binding.pry
       expect(response_json("message")).to eq "Article successfully created"
     end
 

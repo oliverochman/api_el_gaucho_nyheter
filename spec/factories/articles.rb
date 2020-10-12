@@ -4,5 +4,6 @@ FactoryBot.define do
     lead { "MyText" }
     content { "MyString" }
     category { "news" }
+    association :journalist, factory: :user
   end
 end
