@@ -18,4 +18,8 @@ class Api::V1::ArticlesController < ApplicationController
       render json: { error: "Article does not exist" }, status: :not_found
     end
   end
+
+  def create
+    binding.pry
+  end
 end

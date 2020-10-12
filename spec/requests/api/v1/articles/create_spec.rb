@@ -1,5 +1,5 @@
 RSpec.describe "POST /api/v1/articles", type: :request do
-  let(:user) { create:(:user) }
+  let(:user) { create(:user) }
   let(:credentials) { user.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
@@ -7,8 +7,10 @@ RSpec.describe "POST /api/v1/articles", type: :request do
     before do
       post '/api/v1/articles',
       params: {
-        title: 'Article title',
-        content: 'Article content'
+        article: {
+          title: 'Article title',
+          content: 'Article content'  
+        }
       },
       headers: headers 
     end
