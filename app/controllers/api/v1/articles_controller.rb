@@ -23,7 +23,8 @@ class Api::V1::ArticlesController < ApplicationController
 
   def create
     article = Article.create(article_params)
-    if article.persisted?
+    binding.pry
+    if article.persisted? && attach_image(article)
       render json: { message: 'Article successfully created!' }, status: :created
     else 
       binding.pry
@@ -31,6 +32,13 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   private
+
+  def attach_image(article)
+    params_image = params[:article][:image]
+    if params_image.present?
+      DecodeService.attach_image(params_image, article.image)
+    end
+  end
 
   def article_params
     params.require(:article).permit(:title, :content, :lead, :category)
