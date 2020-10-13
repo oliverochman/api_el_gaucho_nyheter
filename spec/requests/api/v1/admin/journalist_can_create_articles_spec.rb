@@ -55,7 +55,7 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
 
   describe "unauthorized user" do
     let(:unauthorized_user) { create(:user, role: "registered") }
-    let(:unauthorized_user_credentials) { unauthorized_user.create_new_auth_token }   
+    let(:unauthorized_user_credentials) { unauthorized_user.create_new_auth_token }
     let(:unauthorized_headers) { { HTTP_ACCEPT: "application/json" }.merge!(unauthorized_user_credentials) }
 
     before do
@@ -73,7 +73,7 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     end
 
     it "is expected to return error message" do
-      expect(response_json["message"].first).to eq "You need to sign in or sign up before continuing."
+      expect(response_json["message"]).to eq "You don't have permission to perform this action"
     end
   end
 end
