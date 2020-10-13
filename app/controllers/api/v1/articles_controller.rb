@@ -25,6 +25,7 @@ class Api::V1::ArticlesController < ApplicationController
     article = Article.create(article_params)
     binding.pry
     if article.persisted? && attach_image(article)
+      binding.pry
       render json: { message: 'Article successfully created!' }, status: :created
     else 
       binding.pry
