@@ -5,6 +5,5 @@ class ApplicationController < ActionController::API
     error_message = errors.full_messages.to_sentence
 
     render json: { message: error_message }, status: 422
-    
   end
 end
