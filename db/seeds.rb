@@ -1,8 +1,9 @@
 Article.destroy_all
 User.destroy_all
+
 journalist = User.create(email: "journalist@mail.com", role: "journalist", password: "password")
-registered = User.create(email: "registered@mail.com", role: "registered", password: "password")
-articles = Article.create(
+
+Article.create(
   [
     {
       title: "Ny studie: Möjligt att utplåna fattigdomen och samtidigt rädda klimatet",

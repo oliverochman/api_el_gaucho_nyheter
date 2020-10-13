@@ -7,11 +7,12 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     before do
       post "/api/v1/admin/articles",
            params: {
-             title: "Trump holds first public event since Covid diagnosis",
-             lead: "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised",
-             content: "The event was officially a 'peaceful protest', but looked, critics said, much like a Trump campaign rally.
-             The president, who says he is no longer taking medicines against Covid-19, told the crowd he was 'feeling great'.",
-             category: "news",
+             article: {
+               title: "Trump holds first public event since Covid diagnosis",
+               lead: "Donald Trump has delivered a speech in front of cheering",
+               content: "The event was officially a 'peaceful protest'",
+               category: "news",
+             },
            }, headers: journalist_headers
     end
 
@@ -29,7 +30,7 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     end
 
     it "article is expected to be associated with journalist" do
-      expect(journalist.articles.first.lead).to eq "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised"
+      expect(journalist.articles.first.lead).to eq "Donald Trump has delivered a speech in front of cheering"
     end
   end
 
@@ -37,10 +38,12 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     before do
       post "/api/v1/admin/articles",
            params: {
-             title: "Trump holds first public event since Covid diagnosis",
-             lead: "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised",
-             content: "",
-             category: "news",
+             article: {
+               title: "Trump holds first public event since Covid diagnosis",
+               lead: "Donald Trump has delivered a speech in front of cheering",
+               content: "",
+               category: "news",
+             },
            }, headers: journalist_headers
     end
 
@@ -61,10 +64,12 @@ RSpec.describe "POST /v1/admin/articles", type: :request do
     before do
       post "/api/v1/admin/articles",
            params: {
-             title: "Trump holds first public event since Covid diagnosis",
-             lead: "Donald Trump has delivered a speech in front of cheering supporters at the White House in his first public appearance since being hospitalised",
-             content: "The event was officially a 'peaceful protest', but looked, critics said, much like a Trump campaign rally.",
-             category: "news",
+             article: {
+               title: "Trump holds first public event since Covid diagnosis",
+               lead: "Donald Trump has delivered a speech in front of cheering",
+               content: "The event was officially a 'peaceful protest'",
+               category: "news",
+             },
            }, headers: unauthorized_headers
     end
 
