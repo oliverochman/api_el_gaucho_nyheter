@@ -12,6 +12,7 @@ gem "jbuilder", "~> 2.7"
 gem "rack-cors", require: "rack/cors"
 gem "bootsnap", ">= 1.4.2", require: false
 gem 'active_model_serializers'
+gem 'devise_token_auth'
 
 group :development, :test do
   gem "rspec-rails"

@@ -1,5 +1,6 @@
 RSpec.describe Api::V1::ArticlesController, type: :request do
-  let!(:articles) { 2.times { create(:article) } }
+  let!(:articles) { 2.times { create(:article, journalist_id: journalist.id) } }
+  let!(:journalist) { create(:user, role: "journalist") }
 
   describe "GET /api/v1/articles - Successfully" do
     before do
