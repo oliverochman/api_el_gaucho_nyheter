@@ -8,7 +8,7 @@ class Api::V1::Admin::ArticlesController < ApplicationController
     if article.persisted?
       render json: { message: "Article successfully created" }
     else
-        render
+      error_message(article.errors)
     end
   end
 
