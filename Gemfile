@@ -21,6 +21,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-byebug"
   gem 'coveralls',  require:  false
+  gem 'stripe-ruby-mock', '3.0.0'
 end
 
 group :development do
