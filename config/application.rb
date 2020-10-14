@@ -19,6 +19,7 @@ module ApiElGauchoNyheter
   class Application < Rails::Application
     config.load_defaults 6.0
     config.api_only = true
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins "*"
@@ -29,6 +30,7 @@ module ApiElGauchoNyheter
           max_age: 0
       end
     end
+
     config.generators do |generate|
       generate.helper false
       generate.assets false
@@ -38,5 +40,8 @@ module ApiElGauchoNyheter
       generate.controller_specs false
       generate.request_specs false
     end
+
+    config.stripe.publishable_key = Rails.application.credentials.stripe[:pk_key]
+    config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
   end
 end
