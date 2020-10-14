@@ -5,7 +5,7 @@ class Api::V1::SubscriptionsController < ApplicationController
     begin
       customer_id = get_customer(params[:stripeToken])
       subscription = Stripe::Subscription.create({ customer: customer_id, plan: "el_g_subscription" })
-
+      
       test_env?(customer_id, subscription)
 
       status = Stripe::Invoice.retrieve(subscription.latest_invoice).paid
@@ -17,7 +17,7 @@ class Api::V1::SubscriptionsController < ApplicationController
         render_stripe_error('You got no money!')
       end
     rescue => error
-      binding.pry
+      render_stripe_error(error.message)
     end
   end
 
